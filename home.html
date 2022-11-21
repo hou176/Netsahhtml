@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <style>
-    .houyue{
-        animation: mover 6s steps(3) infinite;
-        }
-    .houyue>div{
-        float: left;
-    }
-
-    @keyframes mover{
-            0%{
-                margin-left: 0px ;
-            }
-            100%{
-                margin-left:-500%;
-            }
-        }
-    </style> -->
-
   	<title>Home</title>
   	<meta charset="utf-8">
     <meta name="description" content="Your description">
@@ -30,7 +12,7 @@
     <script src="js/jquery.easing.1.3.js"></script>
     <script src="js/tms-0.4.1.js"></script>
     <script src="js/slider.js"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 		$(function(){
 			function equalHeight(group) {
 				var tallest = 0;
@@ -44,40 +26,158 @@
 			}	
 			equalHeight($(".box-1 .inner"));
 		})
-	</script>
-<!--[if lt IE 8]>
-   <div style=' clear: both; text-align:center; position: relative;'>
-     <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-       <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-    </a>
-  </div>
-<![endif]-->
-<!--[if lt IE 9]>
-	<script src="js/html5.js"></script>
-	<link rel="stylesheet" href="css/ie.css"> 
-<![endif]-->
+	</script> -->
+
 </head>
-<body id="page1">
+<body id="page1"  >
 <!-- Header -->
 <header>
     <div class="inner">
         <h1 class="logo"><a href="home.html">Netsahciy</a></h1>
 
-        <div class="fright">
+        <div class="fright" >
             <div class="header-meta">
-                <form id="search-form" method="post">
-                    <input type="text" onblur="if(this.value==''){this.value='search'}" onfocus="if(this.value=='search'){this.value=''}" value="search" name="search">
-                    <a class="search-form-submit" onclick="document.getElementById('search-form').submit()"></a>
-                </form>
-                <div class="col-elem">
+                <!-- <form id="search-form" method="post"> -->
+                <div class="box_text" id="search-form" method="post">
+                    <div class="box_text_content" >
+                        
+                        <input class="searchformx" type="text" name="text" id="text" value="" >
+                        <input  class="input2" type="button" name="bdyx" id="btn" value=""  >
+                        <style>
+                            #search{
+                               
+                               
+                    
+                                /* border: solid red 1px; */
+                                margin-top: 5px;
+                                height: 25px;
+                                width: 350px;
+                                margin-left: 13.5px;
+                                font-size: 8px;
+                                color:#141414a9
+
+                            }
+                        </style>
+
+                        <ul id="search">
+                        <li class="li1" id="0" onclick="iptShow(this.id)"></li>
+                        <!-- <li class="li1" id="1" onclick="iptShow(this.id)"></li> -->
+                        <!-- <li class="li1" id="2" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="3" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="4" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="5" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="6" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="7" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="8" onclick="iptShow(this.id)"></li>
+                        <li class="li1" id="9" onclick="iptShow(this.id)"></li> -->
+                        </ul>
+                    </div>
+                </div>
+    
+               
+                <!-- </form> -->
+
+
+             
+                  <script>
+                    var otext = document.getElementById("text"); //获取input框
+                    ose = document.querySelector("#search"); //通过类名选择器 选择到search框
+                    lis = document.getElementsByClassName("li1"); //获取所有的li
+                    otext.onkeyup = function(){  //当在input框中键盘弹起发生事件
+                      ose.style.display = otext.value?"block":"none"; /*三目运算符,如果otext.value的值部位空,则block。*/
+                      var osc = document.createElement("script"); /*创建一个script标签*/
+                      osc.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+otext.value+"&cb=houxiaowei";
+                      /*srcipt的src值引入百度的url,然后将otext文本框中输入的内容连接到url,在后面在运行自己的方法*/
+                      document.body.appendChild(osc);
+                      /*将创建好的script标签元素放入body中*/
+                      /*input框中按下回车根据input的值跳转页面*/
+                      if(event.keyCode==13){
+                        /*将百度作为连接,传入input的值,并跳入新的页面*/
+                        window.location.href = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd="+otext.value
+                      }
+                    }
+                    var count = 0;
+                    var search = 0;
+                    var arr = ose.children; /*获取ose下的所有li*/
+                    function houxiaowei(json){
+                      var jsonLength = 0; /*json长度的初始值*/
+                    //          console.log(json.s);
+                      for(var x in json.s){  /*将循环的次数变成json的长度*/
+                        jsonLength++;
+                      }
+                    //          console.log(jsonLength);
+                      for(var i=0;i<lis.length;i++){
+                        if(jsonLength==0){ /*如果遍历出的长度等于0,li的值为空*/
+                          arr[i].innerHTML = null;  
+                        }else{
+                          if(json.s[i]!=null){/*如果json[i]的值不等于空,则将它的值放入li中*/
+                            arr[i].innerHTML = json.s[i];
+                          }
+                        }
+                      }
+                      if(count==lis.length-1){
+                        count=0;
+                        search=0;
+                      }
+                      count++;
+                      search++;
+                    }
+                    /*单击li中的值显示在input框中*/
+                    function iptShow(thisId){
+                      otext.value = arr[thisId].innerHTML;
+                      window.location.href = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd="+otext.value
+                    }
+                    otext.onclick = function(e){
+                      ose.style.display = "block";
+                      var e = event || window.event;
+                      e.stopPropagation();  //阻止冒泡事件,除了IE8及以下不兼容,其他浏览器都兼容
+                      e.cancelBubble=true; //阻止冒泡事件,IE8及以下兼容
+                    //        alert(e);
+                    }
+                    /*单击body中的任意地方隐藏li*/
+                    document.body.onclick = function(){
+                      ose.style.display = "none";
+                    }
+                    /*单击百度btn的时候触发,并跳到新的连接*/
+                    var btn = document.querySelector("#btn");
+                    cookies = []; 
+                    btn.onclick = function(){
+                      /*获取当前input的值*/
+                      var otext = document.getElementById("text").value;
+                      /*将百度作为连接,传入input的值,并跳入新的页面*/
+                      if(otext=="" || otext==null){
+                        window.location.href = "http://127.0.0.1:8020/%E7%99%BE%E5%BA%A6/%E7%99%BE%E5%BA%A6%E9%A6%96%E9%A1%B5.html?__hbt=1516599867084";
+                      }else{
+                        window.location.href = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd="+otext
+                      }
+                    }
+                    /*加载页面input为空*/
+                    function onloads(){
+                      var s = otext.value = null;
+                      $myId("text").focus();
+                    }
+                    function randomBack(){
+                      var randomBk = parseInt(Math.random()*545);
+                      document.body.style.background = "url(https://ss3.bdstatic.com/lPoZeXSm1A5BphGlnYG/skin/"+randomBk+".jpg?2)";
+                      document.body.style.backgroundSize = "100%";
+                    }
+                    
+                      </script>
+
+
+                <div class="col-elem" >
                     This is a houyue        <br>
             
-                    <span class="phone">
+                    <span class="phone" >
                         177-0133-3769
                     </span>
                 </div>
             </div>
-            <nav>
+
+
+
+            
+            <nav >
                 <ul class="sf-menu">
                     <li class="current"><a href="home.html">首页</a></li>
                     <!-- <li><a href="https://github.com/hou176">githup</a></li> -->
@@ -109,43 +209,160 @@
         <style>
 
             #houyue{
+                width: 950px;
+                height: 435px;
+                /* border: red solid 1px; */
+                overflow: hidden;
+                position: relative;
+            }
+            #imglist{
+                width: 3800px;
+                height: 435px;
+            }
+            #imglist li{
                 float: left;
-                /* width: 950px; */
-                /* height: 433px; */
-                /* overflow: hidden; */
+            }
+            #imglist img{
+                width: 950px;
+                height: 435px;
+            }
+            .prev{
+                background-color: #666;
+                width: 30px;
+                height: 40px;
+                color: #fff;
+                text-align: center;
+                line-height: 40px;
+                position: absolute;
+                left: 5px;
+                top: 45%;
+                cursor: pointer;
+            }
+            .next{
+                background-color: #666;
+                width: 30px;
+                height: 40px;
+                color: #fff;
+                text-align: center;
+                line-height: 40px;
+                position: absolute;
+                right: 5px;
+                top: 45%;
+                cursor: pointer;
+            }
+            #icolist{
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+
+            }
+            #icolist li{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background:#999;
+                text-align: center;
+                line-height: 30px;
+                color:grey;
+                float: left;
+                margin-left: 5px;
             }
 
         </style>
-        <div id="houyue" style="width: 3200px;">
+        <div id="houyue">
             <ul id="imglist">
-                <li>
-                    <img src="images/slide-1.jpg" alt="">
-                </li>
-                <li>
-                    <img src="images/slide-2.jpg" alt="">
-                </li>
-                <li>
-                    <img src="images/slide-3.jpg" alt="">
-                </li>
-
-
+                <!-- <li><a href="https://www.bilibili.com/" target="_blank"><img src="images/slide-1.jpg" alt=""></a></li> -->
+                <li style="width:950px;height:433px;">
+                    
+                    <a href="https://www.bilibili.com/" target="_blank">
+                            <video autoplay="autoplay" loop="-1" muted="true" controls="controls" style="width:100%; ">
+                                <source src="images/11.mp4" type="video/mp4" />
+                            </video>
+                    </a>
+                    </li>
+                <li><a href="https://shimo.im/desktop" target="_blank"><img src="images/slide-2.jpg" alt=""></a></li>
+               
+                <li><a href="https://www.anaconda.com/products/distribution" target="_blank"><img src="images/slide-3.jpg" alt=""></a></li>
+                <!-- <li><a href="https://www.bilibili.com/" target="_blank"><img src="images/slide-1.jpg" alt=""></a></li> -->
+                <li style="width:950px;height:43b3px;">
+                    <a href="https://www.bilibili.com/" target="_blank">
+                        <video autoplay="autoplay" loop="-1" muted="true" controls="controls" style="width:100%; height:125%; object-fit: fill;">
+                            <source src="images/11.mp4" type="video/mp4" />
+                        </video>
+                    </a>
+                    </li>
             </ul>
+            <ul id="icolist">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+    
+            </ul>
+            <div class="prev">《</div> 
+            <div class="next">》</div> 
         </div>
-        <!-- <script>
+        <script>
+            var eprev = document.querySelector('.prev');
+            var enext = document.querySelector('.next');
+            var esico = document.getElementById('icolist').getElementsByTagName('li');
+            var eicolist = document.querySelector('#icolist');
+            var eimglist = document.querySelector('#imglist');
             var left = 0;
             var timer;
             run();
             function run(){
-                if (left <= -3200){
+                if (left <= -2850){
                     left = 0;
                 }
+                var m = Math.floor(-left / 950)
                 imglist.style.marginLeft = left + 'px';
+                var n = (left % 950 == 0) ? n = 8000 :n = 10;
                 left -= 10;
-                timer = setTimeout(run,10);
+                timer = setTimeout(run,n);
+                icochage(m);
+            }
+            function imgchange(n){
+                let it = -(n * 950);
+                imglist.style.marginLeft = it + 'px';
+                left = it
+            }
+            eprev.onclick = function(){
+                let prevgo = Math.floor(-left / 950) -1;
+                if (prevgo == -1){
+                    prevgo = 2;
+            }
+                imgchange(prevgo);
+            }
+            enext.onclick = function(){
+                let nextgo = Math.floor(-left / 950) +1;
+                if (nextgo == 3){
+                    nextgo = 0;
+            }
+                imgchange(nextgo);
+            }
+            function icochage(m){
+                for(let index = 0 ;index < esico.length;index ++){
+                    esico[index].style.backgroundColor = '';
+
+                }
+                if(m<esico.length){
+                    esico[m].style.backgroundColor = 'white';
+                }
             }
 
-        
-        </script> -->
+            eicolist.onclick = function(){
+                var tg = event.target;
+                let ico = tg.innerHTML -1;
+                imgchange(ico);
+                icochage(ico);
+            }
+            // eimglist.onmouseover = function(){
+            //     clearTimeout(timer);
+            // }
+            // eimglist.onmouseover = function(){
+            //     run();
+            // }
+        </script>
 
 
 
@@ -172,85 +389,32 @@
 
     </div>
 </header>
-
-
-
-
-
-
-
 <!-- Content -->
 <section id="content"><div class="ic"></div>
     <div class="container_24">
         <div class="indent-bot">
             <article class="grid_6">
+            <div class="box-1"  id="box-1-1">                      
+                <a href="https://github.com/hou176" target="_blank"><button style="font-size: 15px;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;color: white;">githup</button></a>
+            </div>
+               
+            </article>
+            <article class="grid_6" id="box-1-2">
                 <div class="box-1">
-                    <div class="inner">
-                        <h3>Microchip implant</h3>
-                        <p>
-                            Vivamus hendrerit mauris ut dui. gravida ut viverra lectus tincidunt. Cras mattis tempor eros nec tristique. 
-                        </p>
-                        <div class="btn-container">
-                            <div class="button-box">
-                                <a href="#" class="button">read more</a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="https://fanyi.baidu.com//" target="_blank"><button style="font-size: 15px;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;color: rgb(12, 10, 10);">百度翻译</button></a>
+                   
                 </div>
             </article>
-            <article class="grid_6">
+            <article class="grid_6" id="box-1-3"> 
                 <div class="box-1">
-                    <div class="inner">
-                        <h3>Ultrasound</h3>
-                        <p class="p0">
-                            <strong class="str-1">
-                                Vivamus hendrerit mauris ut dui gravida ut viverra
-                            </strong>
-                        </p>
-                        <p>
-                            Cras mattis tempor eros nec tristique. Sed sed felis arcu, vel vehicula augue. Maecenas faucibus sagittis. cursus.
-                        </p>
-                        <div class="btn-container">
-                            <div class="button-box">
-                                <a href="#" class="button">read more</a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="https://www.csdn.net/" target="_blank"><button style="font-size: 15px;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;color: rgb(3, 3, 3);">CSDN</button></a>
+                   
                 </div>
             </article>
-            <article class="grid_6">
+            <article class="grid_6" id="box-1-4">
                 <div class="box-1">
-                    <div class="inner">
-                        <h3>Transport service</h3>
-                        <p>
-                            Vivamus hendrerit mauris ut dui. gravida ut viverra lectus tincidunt. Cras mattis tempor eros nec tristique.
-                        </p>
-                        <div class="btn-container">
-                            <div class="button-box">
-                                <a href="#" class="button">read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="grid_6">
-                <div class="box-1">
-                    <div class="inner">
-                        <h3>Vaccinations</h3>
-                        <p class="p0">
-                            <strong class="str-1">
-                                Vivamus hendrerit mauris ut gravida ut viverra  
-                            </strong>
-                        </p>
-                        <p>
-                            Cras mattis tempor eros nec tristique. Sed sed felis arcu, vel vehicula augue. 
-                        </p>
-                        <div class="btn-container">
-                            <div class="button-box">
-                                <a href="#" class="button">read more</a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="https://www.cnblogs.com/" target="_blank"><button style="font-size: 15px;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;color: white;">博客园</button></a>
+                   
                 </div>
             </article>
             <div class="clear"></div>
@@ -400,7 +564,7 @@
 
 
 <!-- Footer -->
-<footer>
+<!-- <footer>
     <div class="copyright">
         &copy; 2012 <strong class="footer-logo">Pet clinic</strong>
         <div><a rel="nofollow" href="http://www.templatemonster.com">Website Template</a> by TemplateMonster.com</div>
@@ -412,7 +576,7 @@
         <li><a href="#"><img src="images/social-link-3.jpg" alt=""></a></li>
         <li><a href="#"><img src="images/social-link-4.jpg" alt=""></a></li>
     </ul>
-</footer>
+</footer> -->
 
 
 
